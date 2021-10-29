@@ -1,0 +1,84 @@
+<!--begin::Advance Table: Widget 7-->
+<div class="card card-custom" [ngClass]="cssClass">
+    <!--begin::Header-->
+    <div class="card-header border-0 pt-5">
+        <h3 class="card-title align-items-start flex-column">
+            <span class="card-label font-weight-bolder text-dark">Thông tin tài khoản</span>
+            <span class="text-muted mt-3 font-weight-bold font-size-sm">Danh sách tài khoản hệ thống</span>
+        </h3>
+        <div class="card-toolbar">
+        </div>
+    </div>
+    <hr>
+    <!--end::Header-->
+    <!--begin::Body-->
+    <div class="card-body pt-2 pb-0 mt-n3">
+        <div class="tab-content mt-5">
+            <!--begin::Tap pane-->
+            <!--begin::Table-->
+            <div class="table-responsive">
+                <mat-form-field appearance="standard">
+                    <mat-label><b>Tìm kiếm</b></mat-label>
+                    <input matInput (keyup)="applyFilter($event)" #input>
+                </mat-form-field>
+
+                <table mat-table [dataSource]="dataSource" matSort>
+
+                    <!-- ID Column -->
+                    <ng-container matColumnDef="id">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> # </th>
+                        <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+                    </ng-container>
+
+                    <!-- Progress Column -->
+                    <ng-container matColumnDef="progress">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Progress </th>
+                        <td mat-cell *matCellDef="let row"> {{row.progress}}% </td>
+                    </ng-container>
+
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                        <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+                    </ng-container>
+
+                    <!-- Fruit Column -->
+                    <ng-container matColumnDef="fruit">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Fruit </th>
+                        <td mat-cell *matCellDef="let row"> {{row.fruit}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="action">
+                        <th mat-header-cell *matHeaderCellDef> Action </th>
+                        <td mat-cell *matCellDef="let row">
+                            <a class="btn btn-icon btn-light btn-hover-primary btn-sm cursor-pointer">
+                                <i class="flaticon-eye text-primary"></i>
+                            </a>
+                            <a class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3 cursor-pointer">
+                                <i class="flaticon-edit text-primary"></i>
+                            </a>
+                            <a class="btn btn-icon btn-light btn-hover-primary btn-sm cursor-pointer">
+                                <i class="flaticon2-trash text-primary"></i>
+                            </a>
+                        </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                    <!-- Row shown when there is no matching data. -->
+                    <tr class="mat-row" *matNoDataRow>
+                        <td class="mat-cell" colspan="5" style="color: red;font-weight: bold;text-align: center;">Không
+                            tìm thấy thông tin !!!</td>
+                    </tr>
+                </table>
+
+                <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons>
+                </mat-paginator>
+            </div>
+            <!--end::Table-->
+        </div>
+    </div>
+    <!--end::Body-->
+</div>
+<!--end::Advance Table Widget 7-->
